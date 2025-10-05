@@ -567,21 +567,22 @@
 
         }
 
-        .portfolio-image-container img {
-            width: 100px;
-            height: 260px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid white;
-            transition: width 0.35s ease, height 0.35s ease, transform 0.35s ease;
-        }
+        @media (min-width: 769px) {
+            .portfolio-image-container img {
+                width: 100px;
+                height: 260px;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 2px solid white;
+                transition: width 0.35s ease, height 0.35s ease, transform 0.35s ease;
+            }
 
-
-        .portfolio-image-container img:hover {
-            width: 260px;
-            height: 360px;
-            transform: translateY(-4px);
-            z-index: 1;
+            .portfolio-image-container img:hover {
+                width: 260px;
+                height: 360px;
+                transform: translateY(-4px);
+                z-index: 1;
+            }
         }
 
         .logo-svg {
@@ -1040,7 +1041,7 @@
     <div id="about" class="page-section">
         <div class="about-panel">
             <h2>About StackForge</h2>
-            <p>StackForge is a leading technology company specializing in innovative solutions for modern
+            <p>StackForge is a high level technologal company specializing in innovative solutions for modern
                 businesses. We provide comprehensive services including document management, cloud storage, and digital
                 transformation solutions.</p>
             <p>Our team of experienced professionals is dedicated to delivering cutting-edge technology that
