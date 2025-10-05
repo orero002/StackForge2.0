@@ -396,6 +396,12 @@
             border-top-color: #23263f;
         }
 
+        body.dark-theme .header-nav li,
+        body.dark-theme .settings-item,
+        body.dark-theme .settings-icon {
+            color: #e0e0e0;
+        }
+
         body.dark-theme .feature {
             background: rgba(255, 255, 255, 0.06);
         }
@@ -416,6 +422,21 @@
 
         body.dark-theme .settings-item:hover {
             background: #1d2140;
+            color: #ffffff;
+        }
+
+        body.dark-theme .about-panel {
+            background: #16182a;
+            border: 1px solid #23263f;
+        }
+
+        body.dark-theme p,
+        body.dark-theme .Project-description p,
+        body.dark-theme .StackForge-Team p {
+            color: #cccccc;
+        }
+
+        body.dark-theme .feature h3 {
             color: #ffffff;
         }
 
@@ -523,6 +544,17 @@
 
         }
 
+        .portfolio-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            max-width: 1100px;
+            margin: 32px auto;
+            padding: 0 20px;
+            flex-direction: row;
+        }
+
         .container {
             display: flex;
             justify-content: center;
@@ -535,7 +567,7 @@
 
         }
 
-        .container img {
+        .portfolio-image-container img {
             width: 100px;
             height: 260px;
             object-fit: cover;
@@ -545,7 +577,7 @@
         }
 
 
-        .container img:hover {
+        .portfolio-image-container img:hover {
             width: 260px;
             height: 360px;
             transform: translateY(-4px);
@@ -671,7 +703,7 @@
         .content h2 {
             font-size: 2.2rem;
             margin-bottom: 25px;
-            color: #111111;
+            color: #e0a70a;
             text-align: center;
         }
 
@@ -815,6 +847,19 @@
             .hamburger {
                 display: block;
             }
+
+            .portfolio-image-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .portfolio-image-container img,
+            .portfolio-image-container img:hover {
+                width: 100%;
+                height: 200px;
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -876,7 +921,7 @@
                 <div class="settings-item" data-page="pricing"><i class="fas fa-tags"></i>Pricing</div>
                 <div class="settings-divider"></div>
                 <div class="color-mode">
-                    <span style="color:#333333;">Color mode</span>
+                    <span class="settings-item">Color mode</span>
                     <div class="toggle" id="themeToggle" aria-label="Toggle color mode"></div>
                 </div>
             </div>
@@ -1008,7 +1053,7 @@
         </div>
 
         <!--Expand effect-->
-        <div class="container">
+        <div class="portfolio-image-container">
             <img src="assets/img4.jpg" alt="#">
             <img src="assets/img5.jpg" alt="#">
             <img src="assets/img1.jpg" alt="#">
