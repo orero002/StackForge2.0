@@ -68,7 +68,7 @@
 
         header p {
             margin: 0 auto;
-            dispaly: flex;
+            display: flex;
         }
 
         .hamburger {
@@ -170,7 +170,7 @@
         }
 
         /* Rotating Cube*/
-        .container {
+        .cube-container {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -179,9 +179,7 @@
             padding: 20px;
         }
 
-        h1 {
-            color: white;
-            margin-bottom: 30px;
+        .cube-container h1 {
             text-align: center;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             font-size: 2.5rem;
@@ -325,7 +323,7 @@
                 height: 80px;
             }
 
-            h1 {
+            .cube-container h1 {
                 font-size: 1.8rem;
             }
 
@@ -567,23 +565,95 @@
 
         }
 
-        @media (min-width: 769px) {
-            .portfolio-image-container img {
-                width: 100px;
-                height: 260px;
-                object-fit: cover;
-                border-radius: 10px;
-                border: 2px solid white;
-                transition: width 0.35s ease, height 0.35s ease, transform 0.35s ease;
-            }
-
-            .portfolio-image-container img:hover {
-                width: 260px;
-                height: 360px;
-                transform: translateY(-4px);
-                z-index: 1;
-            }
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 20px;
         }
+
+        .project-folder {
+            cursor: pointer;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 200px;
+        }
+
+        .project-folder:hover {
+            color: #d4af37;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-folder-images {
+            display: flex;
+            gap: 8px;
+            height: 100px;
+            /* Reduced height for the container */
+            margin-bottom: 10px;
+        }
+
+        .project-folder img {
+            width: 50%;
+            /* Each image takes half the space */
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .project-folder h2 {
+            font-size: 1.2em;
+            margin: 10px 0 5px;
+        }
+
+        .project-folder p {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0;
+        }
+
+        .project-folder .long-description {
+            display: none;
+            /* Hide by default */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 15px;
+            text-align: left;
+            font-size: 0.9em;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .project-folder.expanded .long-description {
+            display: block;
+            opacity: 1;
+        }
+
+        /* For nested folders from JS */
+        .folder-contents {
+            display: none;
+            /* Initially hidden */
+            padding-left: 20px;
+            border-left: 1px solid #eee;
+            margin-top: 10px;
+        }
+
+        .folder-contents.open {
+            display: block;
+            /* Shown when open */
+        }
+
 
         .logo-svg {
             width: 60px;
@@ -1007,7 +1077,7 @@
         </div>
 
         <!--cube animation-->
-        <div class="container">
+        <div class="cube-container">
             <div class="scene">
                 <div class="cube">
                     <div class="cube-face front">
@@ -1054,41 +1124,64 @@
         </div>
 
         <!--Expand effect-->
-        <div class="portfolio-image-container">
-            <img src="assets/img4.jpg" alt="#">
-            <img src="assets/img5.jpg" alt="#">
-            <img src="assets/img1.jpg" alt="#">
-            <img src="assets/img2.jpg" alt="#">
-            <img src="assets/ChatGPT Image Sep 21, 2025, 11_25_46 PM.png" alt="#">
-            <img src="assets/ChatGPT Image Sep 21, 2025, 11_01_22 PM.png" alt="#">
-            <img src="assets/IMG-20250922-WA0005.jpg" alt="#">
-            <img src="assets/IMG-20250922-WA0004.jpg" alt="#">
-        </div>
-
-        <!--project descriptions-->
-        <div class="container">
-            <div class="Project-description">
+        <!-- Container for the dynamic project folders -->
+        <div class="project-container" id="portfolio-container">
+            <div class="project-folder" data-project-url="project-details.html?project=Reino%20Services">
+                <div class="project-folder-images">
+                    <img src="assets/img4.jpg" alt="Reino Services">
+                    <img src="assets/img5.jpg" alt="Reino Services">
+                </div>
                 <h2>Reino Services</h2>
-                <p>At REINO, we offer a wide range of tech solutions designed to meet your unique needs. From web
-                    development
-                    to graphic design and data solutions, etc, we’re here to help you navigate the digital landscape
-                    with confidence</p>
-                <h3>Client</h3>
-                <p>Ian Wabwire</p>
-                <h2>Project Samaritan</h2>
-                <p>The contents of this program are confidential due to Developer-client confidentiality</p>
-                <h2>Buffalo View</h2>
-                <p>This a website for the Bar & Restaurant Buffalo View where customers can get information on the place
-                    and services offered</p>
-                <h3>Client</h3>
-                <p>Gordon Orero Nyamwaya</p>
-                <p>gordonorero@gmail.com</p>
-                <h2>ResQR</h2>
-                <p>ResQR an android app that allows you to share your medical records instantly with emergency
-                    responders either manually or voice operation</p>
-                <p>Confidential</p>
+                <p>Web dev, graphic design, data solutions.</p>
+                <div class="long-description">
+                    <p>At REINO, we offer a wide range of tech solutions designed to meet your unique needs. From web
+                        development to graphic design and data solutions, we’re here to help you navigate the digital
+                        landscape with confidence.</p>
+                </div>
             </div>
+
+            <div class="project-folder" data-project-url="project-details.html?project=Project%20Samaritan">
+                <div class="project-folder-images">
+                    <img src="assets/img1.jpg" alt="Project Samaritan">
+                    <img src="assets/img2.jpg" alt="Project Samaritan">
+                </div>
+                <h2>Project Samaritan</h2>
+                <p>Confidential project.</p>
+                <div class="long-description">
+                    <p>The contents of this program are confidential due to a developer-client non-disclosure agreement.
+                        It involves advanced aerodynamic design and simulation systems.</p>
+                </div>
+            </div>
+
+            <div class="project-folder" data-project-url="project-details.html?project=Buffalo%20View">
+                <div class="project-folder-images">
+                    <img src="assets/img2.jpg" alt="Buffalo View">
+                    <img src="assets/img1.jpg" alt="Buffalo View">
+                </div>
+                <h2>Buffalo View</h2>
+                <p>Website for a Bar & Restaurant.</p>
+                <div class="long-description">
+                    <p>This is a website for the Bar & Restaurant Buffalo View, where customers can get information on
+                        the place, view the menu, and see services offered.</p>
+                </div>
+            </div>
+
+            <div class="project-folder" data-project-url="project-details.html?project=ResQR">
+                <div class="project-folder-images">
+                    <img src="assets/IMG-20250922-WA0004.jpg" alt="ResQR">
+                    <img src="assets/IMG-20250922-WA0005.jpg" alt="ResQR">
+                </div>
+                <h2>ResQR</h2>
+                <p>Android app for medical records.</p>
+                <div class="long-description">
+                    <p>ResQR is an Android app that allows you to store and share your medical records instantly with
+                        emergency responders either manually or through voice commands, using a secure QR code.</p>
+                </div>
+            </div>
+
         </div>
+        <!--project descriptions-->
+
 
         <!--team outline-->
         <div class="container">
@@ -1261,6 +1354,36 @@
             });
         });
 
+        /**
+         * Shows a page section based on a given page ID (e.g., 'home', 'about').
+         * It also updates the navigation bar to highlight the correct item.
+         * @param {string} pageId The ID of the page section to show.
+         */
+        function showPage(pageId) {
+            // Default to 'home' if no pageId is provided or if it's invalid
+            const targetPageId = pageId && document.getElementById(pageId) ? pageId : 'home';
+
+            // Update navigation items
+            navItems.forEach(nav => {
+                nav.classList.toggle('active', nav.getAttribute('data-page') === targetPageId);
+            });
+
+            // Update page sections
+            pageSections.forEach(section => {
+                section.classList.toggle('active', section.id === targetPageId);
+            });
+        }
+
+        /**
+         * Reads the hash from the URL and shows the corresponding page section.
+         */
+        function showPageFromHash() {
+            const hash = window.location.hash.substring(1); // e.g., 'about' from '#about'
+            if (hash) {
+                showPage(hash);
+            }
+        }
+
         // Hamburger menu for mobile
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const headerCenter = document.querySelector('.header-center');
@@ -1367,6 +1490,34 @@
                 cube.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
             }
         });
+
+        // Project folder click-to-expand functionality
+        const projectFolders = document.querySelectorAll('.project-folder');
+        projectFolders.forEach(folder => {
+            folder.addEventListener('click', (e) => {
+                // Don't do anything if the click is on the link inside the description
+                if (e.target.closest('.long-description a')) {
+                    return;
+                }
+
+                // If the folder is already expanded, navigate to the project page
+                if (folder.classList.contains('expanded')) {
+                    window.location.href = folder.dataset.projectUrl;
+                } else {
+                    // If it's not expanded, expand it and close any others
+                    projectFolders.forEach(f => f.classList.remove('expanded'));
+                    folder.classList.add('expanded');
+                }
+            });
+        });
+
+        // Initial load of projects when the page is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            showPageFromHash(); // Show the correct page based on the URL hash
+        });
+
+        // Listen for hash changes to support browser back/forward buttons
+        window.addEventListener('hashchange', showPageFromHash);
     </script>
 </body>
 
