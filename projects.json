@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Reino Services",
+        "description": "A partnership with StackForge providing web development, graphic design, and data solutions.",
+        "long_description": "At REINO, we offer a wide range of tech solutions designed to meet your unique needs. From web development to graphic design and data solutions, we’re here to help you navigate the digital landscape with confidence.",
+        "images": [
+            "assets/img4.jpg",
+            "assets/img5.jpg"
+        ],
+        "client_details": {
+            "name": "Ian Wabeire",
+            "mobile": "0702723281",
+            "email": "servicesreino@gmail.com"
+        }
+    },
+    {
+        "name": "Project Samaritan",
+        "description": "Confidential project.",
+        "long_description": "The contents of this program are confidential due to a developer-client non-disclosure agreement. It involves advanced aerodynamic design and simulation systems.",
+        "images": [
+            "assets/img1.jpg",
+            "assets/img2.jpg"
+        ],
+        "client_details": null
+    },
+    {
+        "name": "Buffalo View",
+        "description": "Website for a Bar & Restaurant.",
+        "long_description": "This is a website for the Bar & Restaurant Buffalo View, where customers can get information on the place, view the menu, and see services offered.",
+        "images": [
+            "assets/ChatGPT Image Sep 21, 2025, 11_25_46 PM.png",
+            "assets/ChatGPT Image Sep 21, 2025, 11_25_46 PM.png"
+        ],
+        "client_details": {
+            "name": "Gordon orero",
+            "mobile": "0716222169",
+            "email": "orerogordon@gmail.com"
+        }
+    },
+    {
+        "name": "ResQR",
+        "description": "Android app for medical records.",
+        "long_description": "ResQR is an Android app that allows you to store and share your medical records instantly with emergency responders either manually or through voice commands, using a secure QR code.",
+        "images": [
+            "assets/IMG-20250922-WA0004.jpg",
+            "assets/IMG-20250922-WA0005.jpg"
+        ],
+        "client_details": "This specific project has no specific client but is up for sale to any interested party"
+    }
+]

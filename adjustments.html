@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Folders</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .project-folder {
+            cursor: pointer;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 200px;
+        }
+
+        .project-folder:hover {
+            color: #d4af37;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-folder-images {
+            display: flex;
+            gap: 8px;
+            height: 100px;
+            /* Reduced height for the container */
+            margin-bottom: 10px;
+        }
+
+        .project-folder img {
+            width: 50%;
+            /* Each image takes half the space */
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .project-folder h2 {
+            font-size: 1.2em;
+            margin: 10px 0 5px;
+        }
+
+        .project-folder p {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0;
+        }
+
+        /* For nested folders from JS */
+        .folder-contents {
+            display: none;
+            /* Initially hidden */
+            padding-left: 20px;
+            border-left: 1px solid #eee;
+            margin-top: 10px;
+        }
+
+        .folder-contents.open {
+            display: block;
+            /* Shown when open */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Projects</h1>
+    <div class="project-container" id="project-container"></div>
+
+    <script>
+        // Sample data for your projects. You can expand this.
+        const myProjects = [{
+            name: "Reino Services",
+            description: "Web dev, graphic design, data solutions.",
+            images: ["assets/img4.jpg", "assets/img5.jpg"], // Using two images now
+            contents: [] // for sub-folders/files if needed
+        },
+        {
+            name: "Project Samaritan",
+            description: "Confidential project.",
+            images: ["assets/img1.jpg", "assets/img2.jpg"],
+            contents: []
+        },
+        {
+            name: "Buffalo View",
+            description: "Website for a Bar & Restaurant.",
+            images: ["assets/img2.jpg", "assets/img1.jpg"], // Re-using images as placeholders
+            contents: []
+        },
+        {
+            name: "ResQR",
+            description: "Android app for medical records.",
+            images: ["assets/IMG-20250922-WA0004.jpg", "assets/IMG-20250922-WA0005.jpg"],
+            contents: []
+        }
+        ];
+
+        /**
+         * Renders a single project folder and appends it to the container.
+         * @param {object} project - The project data object.
+         * @param {HTMLElement} container - The container to append the folder to.
+         */
+        function renderProjectFolder(project, container) {
+            // Create an anchor tag to make the whole folder clickable
+            const link = document.createElement("a");
+            link.href = `project-details.html?project=${encodeURIComponent(project.name)}`;
+            link.style.textDecoration = "none"; // Remove underline from the link
+            link.style.color = "inherit"; // Use the default text color
+
+            const div = document.createElement("div");
+            div.classList.add("project-folder");
+
+            // Create a container for the images
+            const imagesContainer = document.createElement("div");
+            imagesContainer.classList.add("project-folder-images");
+
+            // Loop through the images and create img elements
+            project.images.slice(0, 2).forEach(imageSrc => { // Take the first two images
+                const img = document.createElement("img");
+                img.src = imageSrc;
+                img.alt = project.name;
+                imagesContainer.appendChild(img);
+            });
+            div.appendChild(imagesContainer);
+            const name = document.createElement("h2");
+            name.textContent = project.name;
+            div.appendChild(name);
+
+            const description = document.createElement("p");
+            description.textContent = project.description;
+            div.appendChild(description);
+
+            link.appendChild(div);
+            container.appendChild(link);
+        }
+
+        const container = document.getElementById("project-container");
+        myProjects.forEach(project => renderProjectFolder(project, container));
+    </script>
+</body>
+
+</html>

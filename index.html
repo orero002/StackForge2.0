@@ -580,6 +580,7 @@
             border-radius: 8px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
             width: 200px;
         }
 
@@ -1103,7 +1104,16 @@
         </div>
 
         <footer>
-            <p>Created with HTML, CSS, and JavaScript</p>
+            <p>
+                @ 2025 StackForge. All rights reserved.<br>
+                Contact: stackforgedevelopers@gmail.ac.ke<br>
+                Phone: +254 719 113 666<br>
+                designed and developed by the stackforge seniour developers
+            </p>
+            <a href="https://twitter.com/stackforge">Twitter</a>
+            <a href="https://linkedin.com/in/Stackforge Devs">LinkedIn</a>
+            <a href="https://github.com/orero002">GitHub</a>
+
         </footer>
     </div>
 
@@ -1133,9 +1143,14 @@
                 </div>
                 <h2>Reino Services</h2>
                 <p>Web dev, graphic design, data solutions.</p>
+                =======
+                <p>A partnership with StackForge providing web development, graphic design, and data solutions.</p>
+
                 <div class="long-description">
-                    <p>At REINO, we offer a wide range of tech solutions designed to meet your unique needs. From web
-                        development to graphic design and data solutions, we’re here to help you navigate the digital
+                    <p>At REINO, we offer a wide range of tech solutions designed to meet your unique needs. From
+                        web
+                        development to graphic design and data solutions, we’re here to help you navigate the
+                        digital
                         landscape with confidence.</p>
                 </div>
             </div>
@@ -1148,7 +1163,54 @@
                 <h2>Project Samaritan</h2>
                 <p>Confidential project.</p>
                 <div class="long-description">
-                    <p>The contents of this program are confidential due to a developer-client non-disclosure agreement.
+                    <p>The contents of this program are confidential due to a developer-client
+                        non-disclosure agreement.
+                        It involves advanced aerodynamic design and simulation systems.</p>
+                </div>
+
+            </div>
+
+            <div class="project-folder" data-project-url="project-details.html?project=Buffalo%20View">
+                <div class="project-folder-images">
+                    <img src="assets/ChatGPT Image Sep 21, 2025, 11_25_46 PM.png" alt="Buffalo View">
+                </div>
+                <h2>Buffalo View</h2>
+                <p>Website for a Bar & Restaurant.</p>
+                <div class="long-description">
+                    <p>This is a website for the Bar & Restaurant Buffalo View, where customers can get
+                        information on
+                        the place, view the menu, and see services offered.</p>
+                </div>
+
+            </div>
+
+            <div class="project-folder" data-project-url="project-details.html?project=ResQR">
+                <div class="project-folder-images">
+                    <img src="assets/IMG-20250922-WA0004.jpg" alt="ResQR">
+                    <img src="assets/IMG-20250922-WA0005.jpg" alt="ResQR">
+                </div>
+                <h2>ResQR</h2>
+                <p>Android app for medical records.</p>
+                <div class="long-description">
+                    <p>ResQR is an Android app that allows you to store and share your medical records
+                        instantly
+                        with
+                        emergency responders either manually or through voice commands, using a secure QR
+                        code.</p>
+                </div>
+
+            </div>
+
+            <div class="project-folder" data-project-url="project-details.html?project=Project%20Samaritan">
+                <div class="project-folder-images">
+                    <img src="assets/img1.jpg" alt="Project Samaritan">
+                    <img src="assets/img2.jpg" alt="Project Samaritan">
+                </div>
+                <h2>Project Samaritan</h2>
+                <p>Confidential project.</p>
+                <div class="long-description">
+                    <p>The contents of this program are confidential due to a developer-client
+                        non-disclosure agreement.
                         It involves advanced aerodynamic design and simulation systems.</p>
                 </div>
             </div>
@@ -1161,7 +1223,8 @@
                 <h2>Buffalo View</h2>
                 <p>Website for a Bar & Restaurant.</p>
                 <div class="long-description">
-                    <p>This is a website for the Bar & Restaurant Buffalo View, where customers can get information on
+                    <p>This is a website for the Bar & Restaurant Buffalo View, where customers can get
+                        information on
                         the place, view the menu, and see services offered.</p>
                 </div>
             </div>
@@ -1174,8 +1237,10 @@
                 <h2>ResQR</h2>
                 <p>Android app for medical records.</p>
                 <div class="long-description">
-                    <p>ResQR is an Android app that allows you to store and share your medical records instantly with
-                        emergency responders either manually or through voice commands, using a secure QR code.</p>
+                    <p>ResQR is an Android app that allows you to store and share your medical records
+                        instantly with
+                        emergency responders either manually or through voice commands, using a secure QR
+                        code.</p>
                 </div>
             </div>
 
@@ -1495,6 +1560,7 @@
         const projectFolders = document.querySelectorAll('.project-folder');
         projectFolders.forEach(folder => {
             folder.addEventListener('click', (e) => {
+
                 // Don't do anything if the click is on the link inside the description
                 if (e.target.closest('.long-description a')) {
                     return;
@@ -1508,6 +1574,249 @@
                     projectFolders.forEach(f => f.classList.remove('expanded'));
                     folder.classList.add('expanded');
                 }
+
+                // Navigate to the project details page on click
+                window.location.href = folder.dataset.projectUrl;
+
+            });
+        });
+
+        // Initial load of projects when the page is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            showPageFromHash(); // Show the correct page based on the URL hash
+        });
+
+        // Listen for hash changes to support browser back/forward buttons
+        window.addEventListener('hashchange', showPageFromHash);
+
+
+
+
+        // Your JavaScript remains exactly the same
+        const carouseltrack = document.querySelector('.carousel-track');
+        const controlbtns = document.querySelectorAll('.control-btn');
+        const pausebtn = document.getElementById('pauseBtn');
+        let ispaused = false;
+        let animationinterval;
+
+        // Update active indicator
+        function updateIndicator() {
+            const scrollPosition = Math.abs(parseInt(carouselTrack.style.transform?.split('(')[1] || 0));
+            const activeIndex = Math.floor(scrollPosition / (window.innerWidth * 0.25));
+
+            controlBtns.forEach((btn, index) => {
+                if (index === activeIndex) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Manual controls
+        controlBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                // Calculate scroll position
+                const scrollAmount = -index * 25; // 25% for each image
+                carouselTrack.style.animation = 'none';
+                carouselTrack.style.transform = `translateX(${scrollAmount}%)`;
+
+                // Update active button
+                controlBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Restart animation after a delay if not paused
+                if (!isPaused) {
+                    setTimeout(() => {
+                        carouselTrack.style.animation = `slide 20s infinite linear`;
+                        carouselTrack.style.animationDelay = '-2s'; // Adjust timing
+                    }, 3000);
+                }
+            });
+        });
+
+        // Pause/play functionality
+        pauseBtn.addEventListener('click', () => {
+            if (isPaused) {
+                carouselTrack.style.animationPlayState = 'running';
+                pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                isPaused = false;
+            } else {
+                carouselTrack.style.animationPlayState = 'paused';
+                pauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                isPaused = true;
+            }
+        });
+
+        // Simulate animation events for indicator updates
+        setInterval(updateIndicator, 1000);
+
+        // Page navigation functionality
+        const navitems = document.querySelectorAll('.nav-item');
+        const pagesections = document.querySelectorAll('.page-section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetPage = item.getAttribute('data-page');
+
+                // Remove active class from all nav items
+                navItems.forEach(nav => nav.classList.remove('active'));
+                // Add active class to clicked item
+                item.classList.add('active');
+
+                // Hide all page sections
+                pageSections.forEach(section => section.classList.remove('active'));
+                // Show target page section
+                const targetSection = document.getElementById(targetPage);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+            });
+        });
+
+        /**
+         * Shows a page section based on a given page ID (e.g., 'home', 'about').
+         * It also updates the navigation bar to highlight the correct item.
+         * @param {string} pageId The ID of the page section to show.
+         */
+        function showPage(pageId) {
+            // Default to 'home' if no pageId is provided or if it's invalid
+            const targetPageId = pageId && document.getElementById(pageId) ? pageId : 'home';
+
+            // Update navigation items
+            navItems.forEach(nav => {
+                nav.classList.toggle('active', nav.getAttribute('data-page') === targetPageId);
+            });
+
+            // Update page sections
+            pageSections.forEach(section => {
+                section.classList.toggle('active', section.id === targetPageId);
+            });
+        }
+
+        /**
+         * Reads the hash from the URL and shows the corresponding page section.
+         */
+        function showPageFromHash() {
+            const hash = window.location.hash.substring(1); // e.g., 'about' from '#about'
+            if (hash) {
+                showPage(hash);
+            }
+        }
+
+        // Hamburger menu for mobile
+        const hamburgerbtn = document.getElementById('hamburgerBtn');
+        const headercenter = document.querySelector('.header-center');
+
+        hamburgerBtn.addEventListener('click', () => {
+            headerCenter.classList.toggle('open');
+        });
+
+        // Close mobile menu when a nav item is clicked
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                headerCenter.classList.remove('open');
+            });
+        });
+
+        // Settings menu toggle
+        const settingsbtn = document.getElementById('settingsBtn');
+        const settingsmenu = document.getElementById('settingsMenu');
+        const themetoggle = document.getElementById('themeToggle');
+
+        function closeSettingsOnOutsideClick(event) {
+            if (!settingsMenu.contains(event.target) && !settingsBtn.contains(event.target)) {
+                settingsMenu.classList.remove('open');
+                document.removeEventListener('click', closeSettingsOnOutsideClick);
+            }
+        }
+
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsMenu.classList.toggle('open');
+            if (settingsMenu.classList.contains('open')) {
+                setTimeout(() => document.addEventListener('click', closeSettingsOnOutsideClick), 0);
+            }
+        });
+
+        // Settings: navigate to sections
+        settingsMenu.querySelectorAll('.settings-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const targetPage = item.getAttribute('data-page');
+                if (!targetPage) return;
+
+                // Update nav state to none selected when navigating via settings
+                navItems.forEach(nav => nav.classList.remove('active'));
+
+                // Switch section
+                pageSections.forEach(section => section.classList.remove('active'));
+                const targetSection = document.getElementById(targetPage);
+                if (targetSection) targetSection.classList.add('active');
+
+                settingsMenu.classList.remove('open');
+            });
+        });
+
+        // Theme persistence helpers
+        const theme_key = 'stackforge_theme';
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeToggle.classList.add('on');
+            } else {
+                document.body.classList.remove('dark-theme');
+                themeToggle.classList.remove('on');
+            }
+        }
+
+        // Initialize theme from localStorage
+        const savedtheme = localStorage.getItem(THEME_KEY) || 'light';
+        applyTheme(savedTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-theme');
+            themeToggle.classList.toggle('on', isDark);
+            localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+        });
+
+        // Rotation control
+        const cube = document.querySelector('.cube');
+        let animationstate = 'running';
+
+        function slowRotation() {
+            cube.style.animationDuration = '25s';
+        }
+
+        function pauseRotation() {
+            if (animationState === 'running') {
+                cube.style.animationPlayState = 'paused';
+                animationState = 'paused';
+            }
+        }
+
+        function resumeRotation() {
+            if (animationState === 'paused') {
+                cube.style.animationPlayState = 'running';
+                animationState = 'running';
+            }
+        }
+
+        // Add some interactivity - rotate cube with mouse movement on desktop
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 768) { // Only on larger screens
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                cube.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+
+        // Project folder click-to-expand functionality
+        const projectfolders = document.querySelectorAll('.project-folder');
+        projectFolders.forEach(folder => {
+            folder.addEventListener('click', (e) => {
+                // Navigate to the project details page on click
+                window.location.href = folder.dataset.projectUrl;
             });
         });
 
